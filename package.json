@@ -16,23 +16,23 @@
     "url": "http://github.com/diegoMontesinos/tuio-nw/issues"
   },
   "devDependencies": {
-    "chai": "^3.3.0",
-    "gulp": "^3.9.0",
+    "chai": "^4.3.6",
+    "gulp": "^4.0.2",
     "gulp-coveralls": "^0.1.4",
-    "gulp-eslint": "^1.0.0",
-    "gulp-exclude-gitignore": "^1.0.0",
-    "gulp-istanbul": "^0.10.2",
-    "gulp-mocha": "^2.0.0",
-    "gulp-nsp": "^2.1.0",
-    "gulp-plumber": "^1.0.1"
+    "gulp-eslint": "^6.0.0",
+    "gulp-exclude-gitignore": "^1.2.0",
+    "gulp-istanbul": "^1.1.3",
+    "gulp-mocha": "^8.0.0",
+    "gulp-nsp": "^3.0.1",
+    "gulp-plumber": "^1.2.1"
   },
   "dependencies": {
     "jspack": "0.0.4",
-    "lodash": "^3.10.1"
+    "lodash": "^4.17.21"
   },
   "scripts": {
-    "prepublish": "gulp prepublish",
-    "test": "gulp"
+    "prepublish": "",
+    "test": ""
   },
   "keywords": [
     "tuio",
