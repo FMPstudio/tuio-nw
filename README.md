@@ -1,63 +1,41 @@
-# tuio-nw [![NPM version][npm-image]][npm-url] [![Build Status][travis-image]][travis-url] [![Dependency Status][daviddm-image]][daviddm-url] [![Coverage percentage][coveralls-image]][coveralls-url]
-> A JavaScript implementation of the TUIO protocol for multitouch and tangible interaction for NodeWebkit (nw).
+# tuio-nw 
+> A JavaScript implementation of the TUIO protocol for multitouch applications
 
-## Install
+### Install
+- Ensure you are logged into [Githubs npm
+  registry](https://docs.github.com/en/packages/working-with-a-github-packages-registry/working-with-the-npm-registry). You
+  can use a global `.npmrc`:
+  
+```sh
+//npm.pkg.github.com/:_authToken=YOUR_GITHUB_TOKEN
+@vivents:registry=https://npm.pkg.github.com/
+@fmpstudio:registry=https://npm.pkg.github.com/
+```
+
+- Install tuio-nw via 
 
 ```sh
-$ npm install tuio-nw
+yarn add @fmpstudio/tuio-nw
 ```
 
-## Usage
+---
 
-```js
-var Tuio = require('tuio-nw');
-var tuioClient = new Tuio.Client({
-  host: '127.0.0.1',
-  port: 3333
-});
+### Usage
+- `yarn example` to run the example
+- `example/example.js` illustrates basic usage
 
-var onAddTuioCursor = function (addCursor) {
-  console.log(addCursor);
-},
+---
 
-onUpdateTuioCursor = function (updateCursor) {
-  console.log(updateCursor);
-},
+### Library Development
+- `yarn build` to bundle the library via rollup
+- `yarn publish` to release a new version
 
-onRemoveTuioCursor = function (removeCursor) {
-  console.log(removeCursor);
-},
+---
 
-onAddTuioObject = function (addObject) {
-  console.log(addObject);
-},
+## Credits
+**Original Credits:**
 
-onUpdateTuioObject = function (updateObject) {
-  console.log(updateObject);
-},
-
-onRemoveTuioObject = function (removeObject) {
-  console.log(removeObject);
-},
-
-onRefresh = function (time) {
-  console.log(time);
-};
-
-tuioClient.on('addTuioCursor', onAddTuioCursor);
-tuioClient.on('updateTuioCursor', onUpdateTuioCursor);
-tuioClient.on('removeTuioCursor', onRemoveTuioCursor);
-tuioClient.on('addTuioObject', onAddTuioObject);
-tuioClient.on('updateTuioObject', onUpdateTuioObject);
-tuioClient.on('removeTuioObject', onRemoveTuioObject);
-tuioClient.on('refresh', onRefresh);
-
-tuioClient.listen();
-```
-
-## License
-
-MIT © [Diego Montesinos]()
+MIT © [Diego Montesinos](https://github.com/diegoMontesinos/tuio-nw)
 
 [npm-image]: https://badge.fury.io/js/tuio-nw.svg
 [npm-url]: https://npmjs.org/package/tuio-nw
