@@ -1,0 +1,19 @@
+on:
+  push:
+    branches:
+      - "**"
+
+jobs:
+  up:
+    name: Build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v2
+        with:
+          node-version: 16
+          cache: yarn
+      - name: Install deps
+        run: yarn install
+      - name: Build with vite.js
+        run: yarn build

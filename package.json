@@ -27,12 +27,17 @@
     "gulp-plumber": "^1.2.1"
   },
   "dependencies": {
+    "@types/node": "^17.0.20",
     "jspack": "0.0.4",
-    "lodash": "^4.17.21"
+    "lodash": "^4.17.21",
+    "rollup": "^2.68.0",
+    "rollup-plugin-multi-input": "^1.3.1",
+    "ts-node": "^10.5.0",
+    "typescript": "^4.5.5"
   },
   "scripts": {
-    "prepublish": "",
-    "test": ""
+    "example": "node example/example.js",
+    "build": "rollup --config rollup.config.ts"
   },
   "keywords": [
     "tuio",
@@ -45,5 +50,16 @@
     "interaction",
     "osc"
   ],
-  "main": "index"
+  "files": [
+    "./dist/*.{js,json}"
+  ],
+  "main": "./dist/index.js",
+  "module": "./dist/index.js",
+  "exports": {
+    ".": {
+      "import": "./dist/index.js",
+      "require": "./dist/index.js"
+    }
+  },
+  "types": "./types"
 }
