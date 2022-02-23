@@ -50,9 +50,7 @@
     "interaction",
     "osc"
   ],
-  "files": [
-    "./dist/*.{js,json}"
-  ],
+  "files": ["/dist"],
   "main": "./dist/index.js",
   "module": "./dist/index.js",
   "exports": {
