@@ -86,6 +86,11 @@
   resolved "https://registry.yarnpkg.com/@types/mocha/-/mocha-9.1.0.tgz#baf17ab2cca3fcce2d322ebc30454bff487efad5"
   integrity sha512-QCWHkbMv4Y5U9oW10Uxbr45qMMSzl4OzijsozynUAgx3kEHUdXB00udx2dWDQ7f2TU2a2uuiFaRZjCe3unPpeg==
 
+"@types/node-osc@^6.0.0":
+  version "6.0.0"
+  resolved "https://registry.yarnpkg.com/@types/node-osc/-/node-osc-6.0.0.tgz#6d22d0b94bf632c13fc6c4886de3518079b825e7"
+  integrity sha512-25DwJOFe1KueUZz2oIURT3qCMQ28Jdvy9JqGz8d0mKM1Mlx0agHD9N3S0hMKajVCjw7TGtf3gGjbl5gDCFfIWQ==
+
 "@types/node@^17.0.20":
   version "17.0.20"
   resolved "https://registry.yarnpkg.com/@types/node/-/node-17.0.20.tgz#29626bd9c9119df5b8194353d34044c895fe56e3"
@@ -518,6 +523,11 @@ bindings@^1.5.0:
   integrity sha512-p2q/t/mhvuOj/UeLlV6566GD/guowlr0hHxClI0W9m7MWYkL1F0hLo+0Aexs9HSPCtR1SXQ0TD3MMKrXZajbiQ==
   dependencies:
     file-uri-to-path "1.0.0"
+
+binpack@~0:
+  version "0.1.0"
+  resolved "https://registry.yarnpkg.com/binpack/-/binpack-0.1.0.tgz#bd3d0974c3f2a0446e17df4f60b55a72a205a97e"
+  integrity sha1-vT0JdMPyoERuF99PYLVacqIFqX4=
 
 boom@2.x.x:
   version "2.10.1"
@@ -2690,7 +2700,7 @@ jsonpointer@^5.0.0:
   resolved "https://registry.yarnpkg.com/jsonpointer/-/jsonpointer-5.0.0.tgz#f802669a524ec4805fa7389eadbc9921d5dc8072"
   integrity sha512-PNYZIdMjVIvVgDSYKTT63Y+KZ6IZvGRNNWcxwD+GNnUz1MKPfv30J8ueCjdwcN0nDx2SlshgyB7Oy0epAzVRRg==
 
-jspack@0.0.4:
+jspack@^0.0.4:
   version "0.0.4"
   resolved "https://registry.yarnpkg.com/jspack/-/jspack-0.0.4.tgz#32dd35c7fdcb3e3456c18fbb7ef9ed0bc6238177"
   integrity sha1-Mt01x/3LPjRWwY+7fvntC8YjgXc=
@@ -3221,6 +3231,13 @@ nice-try@^1.0.4:
   resolved "https://registry.yarnpkg.com/nice-try/-/nice-try-1.0.5.tgz#a3378a7696ce7d223e88fc9b764bd7ef1089e366"
   integrity sha512-1nh45deeb5olNY7eX82BkPO7SSxR5SSYJiPTrTdFUVYwAl8CKMA5N9PjTYkHiRjisVcxcQ1HXdLhx2qxxJzLNQ==
 
+node-osc@^6.1.14:
+  version "6.1.14"
+  resolved "https://registry.yarnpkg.com/node-osc/-/node-osc-6.1.14.tgz#f3963c8f664151484d28e7d38e4778ead472c442"
+  integrity sha512-TGJ0ll6B//Ys5AnNbltmlM3rvtQ5DSIU/pQlOiJnqnx7FBWCwp9gXzVEODcccuks6HJ/+pjTRNbHKFXfgC9sVQ==
+  dependencies:
+    osc-min "^1.1.1"
+
 nodesecurity-npm-utils@^6.0.0:
   version "6.0.0"
   resolved "https://registry.yarnpkg.com/nodesecurity-npm-utils/-/nodesecurity-npm-utils-6.0.0.tgz#5fb5974008c0c97a5c01844faa8fd3fc5520806c"
@@ -3430,6 +3447,13 @@ os-tmpdir@~1.0.2:
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/os-tmpdir/-/os-tmpdir-1.0.2.tgz#bbe67406c79aa85c5cfec766fe5734555dfa1274"
   integrity sha1-u+Z0BseaqFxc/sdm/lc0VV36EnQ=
+
+osc-min@^1.1.1:
+  version "1.1.2"
+  resolved "https://registry.yarnpkg.com/osc-min/-/osc-min-1.1.2.tgz#3dcaff10f804c39b7080cf4c10fd7a4103cd9037"
+  integrity sha512-8DbiO8ME85R75stgNVCZtHxB9MNBBNcyy+isNBXrsFeinXGjwNAauvKVmGlfRas5VJWC/mhzIx7spR2gFvWxvg==
+  dependencies:
+    binpack "~0"
 
 p-finally@^1.0.0:
   version "1.0.0"

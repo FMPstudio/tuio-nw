@@ -1,34 +1,23 @@
-import jspack from "jspack";
-import dgram from "dgram";
-
-type DecodedString = {
-  value: string;
-  data: Buffer;
-};
-
-type DecodedTime = {
-  value: number;
-  data: Buffer;
-};
-
-type DecodedInt = {
-  value: string;
-  data: Buffer;
-};
+import {
+  DecodedNumber,
+  DecodedString,
+  DecodeTypeTag,
+  DecodedTime,
+} from "./types";
 
 class OscParser {
-  decodeInt(data: Buffer): DecodedInt {
+  decodeInt(data: Buffer): DecodedNumber {
     return {
-      value: jspack.Unpack(">i", data.slice(0, 4))[0],
+      value: data.readUintBE(0, 4),
       data: data.slice(4),
     };
   }
 
-  decodeFloat(data: Buffer) {
-    // return {
-    //   value: jspack.Unpack(">f", data.slice(0, 4))[0],
-    //   data: data.slice(4),
-    // };
+  decodeFloat(data: Buffer): DecodedNumber {
+    return {
+      value: data.readFloatBE(),
+      data: data.slice(4),
+    };
   }
 
   decodeString(data: Buffer): DecodedString {
@@ -43,67 +32,67 @@ class OscParser {
   }
 
   decodeTime(data: Buffer): DecodedTime {
-    const time = jspack.Unpack(">LL", data.slice(0, 8)),
-      seconds = time[0],
-      fraction = time[1];
+    const seconds = data.readUIntBE(0, 4);
+    const fraction = data.readUIntBE(4, 4);
     return {
       value: seconds + fraction / 4294967296,
       data: data.slice(8),
     };
   }
 
-  decodeBundle(data: Buffer, message: any[]) {
-    const time = this.decodeTime(data);
+  decodeBundle(data: Buffer, message: any[]): Buffer {
+    const { value: timeValue, data: timeData } = this.decodeTime(data);
     let bundleSize;
     let content;
-    data = time.data;
+    data = timeData;
     message.push("#bundle");
-    message.push(time.value);
+    message.push(timeValue);
     while (data.length > 0) {
       bundleSize = this.decodeInt(data);
       data = bundleSize.data;
       content = data.slice(0, bundleSize.value);
-      message.push(decode(content));
+      message.push(this.decode(content));
       data = data.slice(bundleSize.value, data.length);
     }
     return data;
   }
 
-  decodeByTypeTag(typeTag, data: Buffer) {
-    // switch (typeTag) {
-    //   case "i":
-    //     return this.decodeInt(data);
-    //   case "f":
-    //     return this.decodeFloat(data);
-    //   case "s":
-    //     return this.decodeString(data);
-    // }
+  decodeByTypeTag(typeTag: DecodeTypeTag, data: Buffer) {
+    switch (typeTag) {
+      case DecodeTypeTag.INT:
+        return this.decodeInt(data);
+      case DecodeTypeTag.FLOAT:
+        return this.decodeFloat(data);
+      case DecodeTypeTag.STRING:
+        return this.decodeString(data);
+    }
   }
 
-  decodeMessage(address, data: Buffer, message) {
-    // message.push(address.value);
-    // let typeTags = this.decodeString(data).value;
-    // data = typeTags.data;
-    // if (typeTags[0] === ",") {
-    //   for (var i = 1; i < typeTags.length; i++) {
-    //     const arg = this.decodeByTypeTag(typeTags[i], data);
-    //     data = arg.data;
-    //     message.push(arg.value);
-    //   }
-    // }
-    // return data;
+  decodeMessage(address: DecodedString, data: Buffer, message: any[]) {
+    message.push(address.value);
+    const { value: typeTags, data: resultData } = this.decodeString(data);
+    data = resultData;
+    if (typeTags[0] === ",") {
+      for (var i = 1; i < typeTags.length; i++) {
+        const tag: DecodeTypeTag = typeTags.charAt(i) as DecodeTypeTag;
+        const arg = this.decodeByTypeTag(tag, data);
+        data = arg.data;
+        message.push(arg.value);
+      }
+    }
+    return data;
   }
 
   decode(data: Buffer) {
-    const message = [];
+    const message: any[] = [];
     const address = this.decodeString(data);
-    // data = address.data;
+    data = address.data;
     if (address.value === "#bundle") {
-      data = this.decodeBundle(data, message);
-      // } else if (data.length > 0) {
-      //   data = this.decodeMessage(address, data, message);
+      this.decodeBundle(address.data, message);
+    } else if (data.length > 0) {
+      data = this.decodeMessage(address, data, message);
     }
-    // return message;
+    return message;
   }
 }
 
