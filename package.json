@@ -1,7 +1,7 @@
 {
   "name": "@fmpstudio/tuio-nw",
   "description": "A JavaScript implementation of the TUIO protocol for multitouch and tangible interaction for NodeWebkit (nwjs).",
-  "version": "1.0.6",
+  "version": "1.0.7",
   "homepage": "http://github.com/diegoMontesinos/tuio-nw",
   "author": {
     "name": "Diego Montesinos, Guido Schmidt",
