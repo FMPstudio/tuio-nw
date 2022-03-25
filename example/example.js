@@ -5,25 +5,25 @@ var tuioClient = new Tuio.Client({
 });
 
 var onAddTuioCursor = function (addCursor) {
-    console.log(addCursor);
+    //console.log(addCursor);
   },
   onUpdateTuioCursor = function (updateCursor) {
-    console.log(updateCursor);
+    //console.log(updateCursor);
   },
   onRemoveTuioCursor = function (removeCursor) {
-    console.log(removeCursor);
+    //console.log(removeCursor);
   },
   onAddTuioObject = function (addObject) {
-    console.log(addObject);
+    //console.log(addObject);
   },
   onUpdateTuioObject = function (updateObject) {
-    console.log(updateObject);
+    //console.log(updateObject);
   },
   onRemoveTuioObject = function (removeObject) {
-    console.log(removeObject);
+    //console.log(removeObject);
   },
   onRefresh = function (time) {
-    console.log(time);
+    //console.log(time);
   };
 
 tuioClient.on("addTuioCursor", onAddTuioCursor);
